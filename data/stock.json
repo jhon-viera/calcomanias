@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvbi5f8y",
+      "nombre": "MONSTER ENERGY",
+      "categoria": "POPULAR",
+      "precio": 5000,
+      "cantidad": 4,
+      "img": "img/cmvbi5f8y-mvbi5f8y.webp"
+    },
+    {
       "id": "cmvb4dw85",
       "nombre": "LOKA",
       "categoria": "",
