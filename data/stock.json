@@ -2,13 +2,45 @@
   "tienda": {
     "nombre": "Mis Calcomanías",
     "eslogan": "Calcomanías que pegan duro. Para el portátil, el termo, el casco y donde se te ocurra.",
-    "whatsapp": "",
+    "whatsapp": "3186288460",
     "instagram": ""
   },
   "items": [
-    {"id": "ej1", "ejemplo": true, "nombre": "Gato naranja", "categoria": "Animales", "precio": 3000, "cantidad": 3, "img": "img/ej1.svg"},
-    {"id": "ej2", "ejemplo": true, "nombre": "Cactus feliz", "categoria": "Plantas", "precio": 2500, "cantidad": 0, "img": "img/ej2.svg"},
-    {"id": "ej3", "ejemplo": true, "nombre": "Rayo", "categoria": "Íconos", "precio": 2000, "cantidad": 12, "img": "img/ej3.svg"},
-    {"id": "ej4", "ejemplo": true, "nombre": "Corazón", "categoria": "Íconos", "precio": 2000, "cantidad": 7, "img": "img/ej4.svg"}
+    {
+      "id": "ej1",
+      "ejemplo": true,
+      "nombre": "Gato naranja",
+      "categoria": "Animales",
+      "precio": 3000,
+      "cantidad": 3,
+      "img": "img/ej1.svg"
+    },
+    {
+      "id": "ej2",
+      "ejemplo": true,
+      "nombre": "Cactus feliz",
+      "categoria": "Plantas",
+      "precio": 2500,
+      "cantidad": 0,
+      "img": "img/ej2.svg"
+    },
+    {
+      "id": "ej3",
+      "ejemplo": true,
+      "nombre": "Rayo",
+      "categoria": "Íconos",
+      "precio": 2000,
+      "cantidad": 12,
+      "img": "img/ej3.svg"
+    },
+    {
+      "id": "ej4",
+      "ejemplo": true,
+      "nombre": "Corazón",
+      "categoria": "Íconos",
+      "precio": 2000,
+      "cantidad": 7,
+      "img": "img/ej4.svg"
+    }
   ]
 }
