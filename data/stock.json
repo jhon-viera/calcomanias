@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvb48ayo",
+      "nombre": "NO5",
+      "categoria": "",
+      "precio": 3000,
+      "cantidad": 1,
+      "img": "img/cmvb48ayo-mvb48ayo.webp"
+    },
+    {
       "id": "cmvb47n1o",
       "nombre": "BANDIDO RETIRADO",
       "categoria": "",
