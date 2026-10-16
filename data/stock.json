@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvb4c3tb",
+      "nombre": "QUE  MIRA SAPO",
+      "categoria": "",
+      "precio": 4500,
+      "cantidad": 2,
+      "img": "img/cmvb4c3tb-mvb4c3tb.webp"
+    },
+    {
       "id": "cmvb4be7p",
       "nombre": "HAHHAAHAH",
       "categoria": "",
