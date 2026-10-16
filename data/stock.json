@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvb46e3r",
+      "nombre": "46",
+      "categoria": "POPULAR",
+      "precio": 1500,
+      "cantidad": 3,
+      "img": "img/cmvb46e3r-mvb46e3r.webp"
+    },
+    {
       "id": "cmvb3r0dv",
       "nombre": "CON DIOS POR DELANTE",
       "categoria": "",
