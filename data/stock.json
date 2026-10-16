@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvb4acvz",
+      "nombre": "OSS X",
+      "categoria": "",
+      "precio": 5000,
+      "cantidad": 1,
+      "img": "img/cmvb4acvz-mvb4acvz.webp"
+    },
+    {
       "id": "cmvb49t2r",
       "nombre": "NO FEAR",
       "categoria": "",
