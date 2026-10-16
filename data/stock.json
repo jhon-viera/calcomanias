@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvb49aag",
+      "nombre": "DOPE",
+      "categoria": "",
+      "precio": 2500,
+      "cantidad": 3,
+      "img": "img/cmvb49aag-mvb49aag.webp"
+    },
+    {
       "id": "cmvb48tbd",
       "nombre": "BOOS BUNNY",
       "categoria": "",
