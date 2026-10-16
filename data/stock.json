@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvb49t2r",
+      "nombre": "NO FEAR",
+      "categoria": "",
+      "precio": 2500,
+      "cantidad": 3,
+      "img": "img/cmvb49t2r-mvb49t2r.webp"
+    },
+    {
       "id": "cmvb49aag",
       "nombre": "DOPE",
       "categoria": "",
