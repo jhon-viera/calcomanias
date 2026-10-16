@@ -15,15 +15,6 @@
       "img": "img/cmvb3nir4-mvb3nir4.webp"
     },
     {
-      "id": "ej1",
-      "ejemplo": true,
-      "nombre": "Gato naranja",
-      "categoria": "Animales",
-      "precio": 3000,
-      "cantidad": 3,
-      "img": "img/ej1.svg"
-    },
-    {
       "id": "ej2",
       "ejemplo": true,
       "nombre": "Cactus feliz",
