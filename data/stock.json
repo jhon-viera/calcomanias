@@ -107,14 +107,14 @@
       "nombre": "FOXX",
       "categoria": "",
       "precio": 4500,
-      "cantidad": 2,
+      "cantidad": 4,
       "img": "img/cmvb473ly-mvb473ly.webp"
     },
     {
       "id": "cmvb46e3r",
       "nombre": "46",
       "categoria": "POPULAR",
-      "precio": 1500,
+      "precio": 3000,
       "cantidad": 3,
       "img": "img/cmvb46e3r-mvb46e3r.webp"
     },
