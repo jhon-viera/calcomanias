@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mis Calcomanías</title>
+<meta name="description" content="Catálogo de calcomanías. Mira cuáles hay disponibles y pide por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Titan+One&display=swap">
+<link rel="stylesheet" href="estilos.css">
+<style>
+/* ---------- Portada ---------- */
+html,body{overflow-x:hidden}
+@supports (overflow:clip){html,body{overflow-x:clip}}
+.hero{position:relative;overflow:hidden;background:var(--cobalt);color:#fff;padding-block:calc(28px + env(safe-area-inset-top,0px)) 70px}
+.hero::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.14) 2px,transparent 2.5px);background-size:26px 26px;pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}
+.brandrow{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:34px;grid-column:1/-1}
+.logo{display:flex;align-items:center;gap:10px;font:400 20px/1 var(--f-display);color:#fff;text-decoration:none}
+.logo i{width:34px;height:34px;border-radius:50%;background:var(--sun);border:3px solid var(--ink);display:grid;place-items:center;font-style:normal;color:var(--ink);font-size:17px;transform:rotate(-12deg)}
+.hero h1{margin:0;font:400 clamp(46px,9.5vw,104px)/.92 var(--f-display);letter-spacing:-.01em;text-wrap:balance;color:#fff;
+  text-shadow:4px 4px 0 var(--ink),-2px -2px 0 var(--ink),2px -2px 0 var(--ink),-2px 2px 0 var(--ink),2px 2px 0 var(--ink);overflow-wrap:anywhere}
+.hero h1 .hl{color:var(--sun)}
+.hero p.lead{max-width:30em;font-size:clamp(17px,2.2vw,20px);font-weight:700;margin:20px 0 26px;color:#E4E8FF}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.stat{background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.35);border-radius:14px;padding:8px 14px;font-weight:800;font-size:14px}
+.stat b{font:400 20px/1 var(--f-display);margin-right:4px;color:var(--sun)}
+.pile{position:relative;aspect-ratio:1;max-width:420px;width:100%;justify-self:center}
+.pile .die{position:absolute;width:52%;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.pile .die:nth-child(1){left:2%;top:6%;transform:rotate(-11deg)}
+.pile .die:nth-child(2){right:0;top:0;transform:rotate(9deg);width:46%}
+.pile .die:nth-child(3){left:22%;bottom:0;transform:rotate(4deg);width:56%}
+.pile:hover .die:nth-child(1){transform:rotate(-16deg) translate(-6px,-6px)}
+.pile:hover .die:nth-child(2){transform:rotate(14deg) translate(6px,-8px)}
+.pile:hover .die:nth-child(3){transform:rotate(-2deg) translateY(6px)}
+.badge{position:absolute;right:4%;bottom:12%;z-index:2;width:104px;height:104px;border-radius:50%;background:var(--pink);border:3px solid var(--ink);color:#fff;display:grid;place-items:center;text-align:center;font:400 15px/1.05 var(--f-display);transform:rotate(14deg);box-shadow:4px 4px 0 var(--ink);padding:8px}
+
+/* ---------- Cinta ---------- */
+.tape{background:var(--sun);border-block:3px solid var(--ink);overflow:hidden;transform:rotate(-1.4deg);margin:-26px -10px 0;position:relative;z-index:2}
+.tape .track{display:flex;gap:36px;width:max-content;padding:12px 0;font:400 18px/1 var(--f-display);white-space:nowrap;animation:roll 28s linear infinite}
+.tape span::after{content:"★";margin-left:36px;color:var(--pink)}
+@keyframes roll{to{transform:translateX(-50%)}}
+
+/* ---------- Catálogo ---------- */
+.catalog{padding-block:56px 120px}
+.cat-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.cat-head h2{margin:0;font:400 clamp(30px,5vw,46px)/1 var(--f-display)}
+.cat-head p{margin:6px 0 0;color:var(--muted)}
+.search{position:relative;flex:1 1 260px;max-width:360px}
+.search input{width:100%;border:3px solid var(--ink);border-radius:999px;padding:12px 18px 12px 44px;background:#fff;font-weight:700}
+.search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.chip{border:2.5px solid var(--ink);background:#fff;border-radius:999px;padding:7px 15px;font-weight:800;font-size:14px}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:34px 24px}
+.card{display:flex;flex-direction:column;gap:14px;min-width:0}
+.card .die{transition:transform .25s cubic-bezier(.3,1.6,.5,1),box-shadow .2s}
+.card:nth-child(4n+1) .die{transform:rotate(-2deg)}.card:nth-child(4n+2) .die{transform:rotate(1.6deg)}
+.card:nth-child(4n+3) .die{transform:rotate(-.8deg)}.card:nth-child(4n) .die{transform:rotate(2.4deg)}
+.card:hover .die{transform:rotate(0) scale(1.03);box-shadow:9px 9px 0 var(--ink)}
+.die .peel{position:absolute;right:-3px;bottom:-3px;width:40px;height:40px;border-radius:0 0 26px 0;background:linear-gradient(135deg,transparent 50%,var(--line) 50%);border-left:3px solid var(--ink);border-top:3px solid var(--ink);border-top-left-radius:16px;opacity:0;transition:opacity .2s}
+.card:hover .die .peel{opacity:1}
+.is-out .die img{filter:grayscale(1);opacity:.4}
+.stamp{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-14deg);background:#fff;border:4px solid var(--out);color:var(--out);font:400 22px/1 var(--f-display);letter-spacing:.06em;padding:8px 12px;border-radius:10px;white-space:nowrap}
+.flag{position:absolute;left:-10px;top:14px;background:var(--mint);border:2.5px solid var(--ink);border-radius:8px;padding:3px 9px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;transform:rotate(-6deg)}
+.meta{display:flex;flex-direction:column;gap:8px;min-width:0}
+.meta h3{margin:0;font:400 20px/1.15 var(--f-display);overflow-wrap:anywhere}
+.cat{font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.price{font:400 22px/1 var(--f-display)}
+.pill{font-size:13px;font-weight:900;border-radius:999px;padding:4px 11px;border:2px solid currentColor}
+.pill.ok{color:#0B7A4B;background:#DFF8EC}.pill.low{color:#A35A00;background:#FFF1D6}.pill.out{color:var(--out);background:#FFE6E6}
+.add{width:100%;padding:11px 14px;font-size:16px}
+.empty{background:#fff;border:3px dashed var(--ink);border-radius:24px;padding:40px 20px;text-align:center;font-weight:800}
+.empty p{margin:6px 0 0;color:var(--muted);font-weight:700}
+.loading{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:24px}
+.loading div{aspect-ratio:1;border-radius:28px;background:linear-gradient(90deg,#E6E9FB,#F6F7FF,#E6E9FB);background-size:200% 100%;animation:sh 1.2s infinite}
+@keyframes sh{to{background-position:-200% 0}}
+
+/* ---------- Pie ---------- */
+footer{background:var(--ink);color:#C9CCF0;padding-block:36px calc(110px + env(safe-area-inset-bottom,0px))}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer strong{color:#fff;font:400 20px/1 var(--f-display)}
+footer a{color:var(--sun)}
+.sel{user-select:all;color:#fff}
+
+/* ---------- Bolsa ---------- */
+.bagbtn{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;padding:15px 22px;font-size:18px}
+.bagbtn .count{background:var(--ink);color:#fff;border-radius:999px;min-width:26px;height:26px;display:inline-grid;place-items:center;font:900 14px/1 var(--f-body);padding:0 6px}
+.bagbtn.bump{animation:bump .35s}
+@keyframes bump{40%{transform:scale(1.15) rotate(-4deg)}}
+.scrim{position:fixed;inset:0;z-index:30;background:rgba(18,18,58,.55);display:flex;justify-content:flex-end}
+.drawer{background:#fff;width:min(440px,100%);height:100%;display:flex;flex-direction:column;border-left:3px solid var(--ink);padding:calc(20px + env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) 18px}
+.drawer h2{margin:0;font:400 28px/1 var(--f-display)}
+.dhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.x{border:2.5px solid var(--ink);background:#fff;border-radius:50%;width:42px;height:42px;font:900 18px/1 var(--f-body)}
+.lines{flex:1;overflow:auto;display:flex;flex-direction:column;gap:14px;padding:4px 4px 12px}
+.line{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center}
+.line .die{border-radius:14px;padding:6px;box-shadow:3px 3px 0 var(--ink);border-width:2.5px}
+.line h4{margin:0;font:400 16px/1.2 var(--f-display);overflow-wrap:anywhere}
+.line small{color:var(--muted);font-weight:700}
+.qty{display:flex;align-items:center;border:2.5px solid var(--ink);border-radius:999px;overflow:hidden}
+.qty button{border:0;background:#fff;width:34px;height:34px;font:900 18px/1 var(--f-body)}
+.qty span{min-width:24px;text-align:center;font-weight:900}
+.total{border-top:3px solid var(--ink);padding-top:14px;display:flex;flex-direction:column;gap:12px}
+.total .row{font-weight:900;font-size:18px}
+.total .price{font-size:28px}
+.note{font-size:13px;color:var(--muted);margin:0;font-weight:700}
+
+@media (max-width:760px){
+  .hero{padding-bottom:60px}
+  .hero .wrap{grid-template-columns:1fr}
+  .pile{max-width:300px;order:-1;margin-bottom:-6px}
+  .badge{width:86px;height:86px;font-size:13px}
+  .brandrow{margin-bottom:18px;order:-2}
+  .grid,.loading{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 16px}
+  .meta h3{font-size:17px}.price{font-size:19px}
+  .stamp{font-size:16px;padding:6px 8px}
+  .catalog{padding-top:44px}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="brandrow">
+      <a class="logo" href="#"><i>★</i><span id="shopname">Mis Calcomanías</span></a>
+    </div>
+    <div>
+      <h1>Pega tu <span class="hl">estilo</span> donde quieras</h1>
+      <p class="lead" id="tagline">Calcomanías que pegan duro. Para el portátil, el termo, el casco y donde se te ocurra.</p>
+      <div class="ctas">
+        <a class="btn" href="#catalogo">Ver calcomanías</a>
+        <a class="btn pink" id="heroWa" href="#" target="_blank" rel="noopener" hidden>Pedir por WhatsApp</a>
+      </div>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="pile" id="pile" aria-hidden="true">
+      <div class="die"></div><div class="die"></div><div class="die"></div>
+      <div class="badge">¡Pide la tuya!</div>
+    </div>
+  </div>
+</header>
+
+<div class="tape" aria-hidden="true"><div class="track" id="track"></div></div>
+
+<main class="catalog" id="catalogo">
+  <div class="wrap">
+    <div class="cat-head">
+      <div><h2>El catálogo</h2><p id="summary">Cargando calcomanías…</p></div>
+      <label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" type="search" placeholder="Buscar calcomanía…" aria-label="Buscar calcomanía"></label>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filtrar"></div>
+    <div id="grid"><div class="loading"><div></div><div></div><div></div><div></div></div></div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><strong id="fname">Mis Calcomanías</strong><div id="fcontact" style="margin-top:8px"></div></div>
+    <div style="font-size:14px">Precios en pesos colombianos. La disponibilidad se actualiza cada vez que se vende una.</div>
+  </div>
+</footer>
+
+<button class="btn pink bagbtn" id="bagbtn" hidden>Mi pedido <span class="count" id="count">0</span></button>
+<div id="drawer"></div>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)};
+  var data={tienda:{},items:[]}, filter='Todas', query='', bag={};
+  try{bag=JSON.parse(localStorage.getItem('bolsa')||'{}')||{}}catch(e){bag={}}
+  var fmt; try{fmt=new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0})}catch(e){fmt={format:function(n){return '$'+n}}}
+  function money(n){return fmt.format(Number(n)||0)}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function wa(){return String(data.tienda.whatsapp||'').replace(/\D/g,'')}
+  function saveBag(){try{localStorage.setItem('bolsa',JSON.stringify(bag))}catch(e){}}
+  function find(id){return data.items.find(function(i){return i.id===id})}
+
+  fetch('data/stock.json?v='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
+    data=d; data.tienda=data.tienda||{}; data.items=data.items||[];
+    // limpia la bolsa si algo se agotó
+    Object.keys(bag).forEach(function(id){var it=find(id); if(!it||it.cantidad<=0)delete bag[id]; else if(bag[id]>it.cantidad)bag[id]=it.cantidad;});
+    saveBag(); paintStatic(); render(); paintBag();
+  }).catch(function(){
+    $('#grid').innerHTML='<div class="empty">No pudimos cargar el catálogo.<p>Revisa tu conexión y recarga la página.</p></div>';
+    $('#summary').textContent='';
+  });
+
+  function paintStatic(){
+    var t=data.tienda, name=t.nombre||'Mis Calcomanías';
+    document.title=name; $('#shopname').textContent=name; $('#fname').textContent=name;
+    if(t.eslogan)$('#tagline').textContent=t.eslogan;
+    var n=wa(), c='';
+    if(n){var h=$('#heroWa'); h.hidden=false; h.href='https://wa.me/'+n+'?text='+encodeURIComponent('¡Hola! Vi tu catálogo de calcomanías y quiero hacer un pedido.'); c+='WhatsApp: <span class="sel">+'+esc(n)+'</span>';}
+    if(t.instagram){var ig=String(t.instagram).replace(/^@/,''); c+=(c?' · ':'')+'Instagram: <a href="https://instagram.com/'+encodeURIComponent(ig)+'" target="_blank" rel="noopener">@'+esc(ig)+'</a>';}
+    $('#fcontact').innerHTML=c;
+    var avail=data.items.filter(function(i){return i.cantidad>0});
+    $('#stats').innerHTML='<span class="stat"><b class="num">'+avail.length+'</b>diseños disponibles</span><span class="stat"><b class="num">'+avail.reduce(function(s,i){return s+i.cantidad},0)+'</b>calcomanías listas</span>';
+    var pics=(avail.length?avail:data.items).slice(0,3);
+    var dies=document.querySelectorAll('#pile .die');
+    for(var i=0;i<dies.length;i++){var p=pics[i%Math.max(pics.length,1)]; dies[i].innerHTML=p?'<img src="'+esc(p.img)+'" alt="">':'';}
+    var words=['Pedidos por WhatsApp','Para el portátil, el termo y el casco','Mira cuáles quedan','Precios por unidad','Arma tu pedido'];
+    var s=words.concat(words).map(function(w){return '<span>'+w+'</span>'}).join('');
+    $('#track').innerHTML=s+s;
+  }
+
+  function render(){
+    var cats=['Todas','Disponibles'];
+    data.items.forEach(function(i){if(i.categoria&&cats.indexOf(i.categoria)<0)cats.push(i.categoria)});
+    $('#chips').innerHTML=cats.map(function(c){return '<button class="chip" data-chip="'+esc(c)+'" aria-pressed="'+(filter===c)+'">'+esc(c)+'</button>'}).join('');
+    var q=query.trim().toLowerCase();
+    var list=data.items.filter(function(i){
+      if(filter==='Disponibles'&&i.cantidad<=0)return false;
+      if(filter!=='Todas'&&filter!=='Disponibles'&&i.categoria!==filter)return false;
+      if(q&&(i.nombre+' '+(i.categoria||'')).toLowerCase().indexOf(q)<0)return false;
+      return true;
+    });
+    // disponibles primero
+    list.sort(function(a,b){return (b.cantidad>0)-(a.cantidad>0)});
+    var av=data.items.filter(function(i){return i.cantidad>0}).length;
+    $('#summary').textContent=data.items.length?(av+' disponibles de '+data.items.length+' diseños'):'';
+    if(!data.items.length){$('#grid').innerHTML='<div class="empty">Muy pronto habrá calcomanías aquí.<p>Vuelve en unos días.</p></div>';return;}
+    if(!list.length){$('#grid').innerHTML='<div class="empty">No encontramos calcomanías con esa búsqueda.<p>Prueba con otra palabra o toca “Todas”.</p></div>';return;}
+    $('#grid').innerHTML='<div class="grid">'+list.map(function(i){
+      var out=i.cantidad<=0, inBag=bag[i.id]||0, left=i.cantidad-inBag;
+      var pill=out?'<span class="pill out">Agotada</span>':(i.cantidad<=3?'<span class="pill low num">¡Últimas '+i.cantidad+'!</span>':'<span class="pill ok num">Quedan '+i.cantidad+'</span>');
+      var btn=out?'<button class="btn white add" disabled>Agotada</button>':
+        (left>0?'<button class="btn add" data-add="'+esc(i.id)+'">'+(inBag?'Agregar otra ('+inBag+')':'Agregar al pedido')+'</button>':'<button class="btn white add" disabled>Ya tienes todas ('+inBag+')</button>');
+      return '<article class="card'+(out?' is-out':'')+'"><div class="die">'+(i.ejemplo?'<span class="flag">Ejemplo</span>':'')+'<img loading="lazy" src="'+esc(i.img)+'" alt="Calcomanía '+esc(i.nombre)+'">'+(out?'<span class="stamp">AGOTADA</span>':'')+'<span class="peel"></span></div>'+
+        '<div class="meta">'+(i.categoria?'<span class="cat">'+esc(i.categoria)+'</span>':'')+'<h3>'+esc(i.nombre)+'</h3><div class="row"><span class="price num">'+money(i.precio)+'</span>'+pill+'</div>'+btn+'</div></article>';
+    }).join('')+'</div>';
+  }
+
+  function bagCount(){return Object.keys(bag).reduce(function(s,k){return s+bag[k]},0)}
+  function paintBag(bump){
+    var n=bagCount(), b=$('#bagbtn'); b.hidden=n===0; $('#count').textContent=n;
+    if(bump){b.classList.remove('bump');void b.offsetWidth;b.classList.add('bump')}
+  }
+  function openBag(){
+    var keys=Object.keys(bag).filter(function(k){return find(k)}), total=0;
+    var lines=keys.map(function(k){var i=find(k), q=bag[k]; total+=q*i.precio;
+      return '<div class="line"><div class="die"><img src="'+esc(i.img)+'" alt=""></div><div><h4>'+esc(i.nombre)+'</h4><small class="num">'+money(i.precio)+' c/u</small></div><div class="qty"><button data-dec="'+esc(k)+'" aria-label="Quitar una">−</button><span class="num">'+q+'</span><button data-inc="'+esc(k)+'" aria-label="Agregar una"'+(q>=i.cantidad?' disabled':'')+'>+</button></div></div>'}).join('');
+    var n=wa();
+    var html='<div class="scrim" data-close="1"><aside class="drawer" role="dialog" aria-modal="true" aria-label="Mi pedido"><div class="dhead"><h2>Mi pedido</h2><button class="x" data-close="1" aria-label="Cerrar">✕</button></div>'+
+      '<div class="lines">'+(lines||'<p class="note">Tu pedido está vacío. Agrega calcomanías desde el catálogo.</p>')+'</div>'+
+      '<div class="total"><div class="row"><span>Total</span><span class="price num">'+money(total)+'</span></div>'+
+      (n?'<a class="btn pink" id="send" target="_blank" rel="noopener" href="'+waLink(keys,total)+'">Enviar pedido por WhatsApp</a><p class="note">Se abre WhatsApp con tu pedido escrito. Solo tienes que enviarlo.</p>':'<p class="note">La tienda aún no tiene WhatsApp configurado. Escríbele al vendedor con esta lista.</p>')+
+      '</div></aside></div>';
+    $('#drawer').innerHTML=html;
+  }
+  function waLink(keys,total){
+    var msg='¡Hola! Quiero hacer este pedido de calcomanías:\n'+keys.map(function(k){var i=find(k);return '• '+bag[k]+' × '+i.nombre+' ('+money(i.precio)+' c/u)'}).join('\n')+'\nTotal: '+money(total);
+    return 'https://wa.me/'+wa()+'?text='+encodeURIComponent(msg);
+  }
+
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('button,[data-close]'); if(!t)return;
+    if(t.dataset.chip){filter=t.dataset.chip;render();return}
+    if(t.dataset.add){var i=find(t.dataset.add); var q=bag[i.id]||0; if(q<i.cantidad){bag[i.id]=q+1;saveBag();render();paintBag(true)} return}
+    if(t.id==='bagbtn'){openBag();return}
+    if(t.dataset.inc||t.dataset.dec){var k=t.dataset.inc||t.dataset.dec, it=find(k); bag[k]=(bag[k]||0)+(t.dataset.inc?1:-1); if(bag[k]>it.cantidad)bag[k]=it.cantidad; if(bag[k]<=0)delete bag[k]; saveBag();openBag();render();paintBag();return}
+    if(t.dataset.close&&(e.target===t||t.tagName==='BUTTON')){$('#drawer').innerHTML='';}
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')$('#drawer').innerHTML=''});
+  $('#q').addEventListener('input',function(e){query=e.target.value;render()});
+})();
+</script>
+</body>
+</html>

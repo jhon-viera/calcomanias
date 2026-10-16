@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Panel del vendedor · Mis Calcomanías</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Titan+One&display=swap">
+<link rel="stylesheet" href="estilos.css">
+<style>
+body{background:var(--soft)}
+.top{background:var(--cobalt);color:#fff;padding-block:calc(18px + env(safe-area-inset-top,0px)) 18px;border-bottom:3px solid var(--ink)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.top h1{margin:0;font:400 clamp(22px,4vw,30px)/1 var(--f-display);text-shadow:2px 2px 0 var(--ink)}
+.top small{display:block;font:800 13px/1.3 var(--f-body);color:#D7DCFF;margin-top:4px}
+.top a{color:var(--sun);font-weight:900}
+main{padding-block:24px 140px}
+.box{background:#fff;border:3px solid var(--ink);border-radius:22px;padding:20px;box-shadow:5px 5px 0 var(--ink)}
+.box h2{margin:0 0 6px;font:400 24px/1.1 var(--f-display)}
+.box p{margin:0 0 12px;color:var(--muted)}
+.steps{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px}
+.steps li::marker{font-weight:900;color:var(--pink)}
+.steps b{color:var(--ink)}
+.stack{display:flex;flex-direction:column;gap:16px}
+label.f{display:flex;flex-direction:column;gap:6px;font-weight:900;font-size:15px}
+label.f input,label.f select{border:2.5px solid var(--ink);border-radius:14px;padding:12px 14px;background:#fff;font-weight:700;font-size:16px;width:100%}
+.hint{font-weight:700;color:var(--muted);font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.err{color:var(--out);font-weight:900;margin:0}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:18px}
+.toolbar .left{display:flex;gap:10px;flex-wrap:wrap}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:2.5px solid var(--ink);background:#fff;border-radius:999px;padding:7px 14px;font-weight:900;font-size:14px}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff}
+.list{display:flex;flex-direction:column;gap:12px}
+.item{display:grid;grid-template-columns:84px minmax(0,1fr) auto;gap:16px;align-items:center;background:#fff;border:3px solid var(--ink);border-radius:20px;padding:12px}
+.item .die{border-radius:16px;padding:6px;box-shadow:3px 3px 0 var(--ink);border-width:2.5px}
+.item.out .die img{filter:grayscale(1);opacity:.45}
+.item h3{margin:0;font:400 19px/1.15 var(--f-display);overflow-wrap:anywhere}
+.item .sub{color:var(--muted);font-weight:800;font-size:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:4px}
+.pill{font-size:12px;font-weight:900;border-radius:999px;padding:3px 10px;border:2px solid currentColor}
+.pill.ok{color:#0B7A4B;background:#DFF8EC}.pill.out{color:var(--out);background:#FFE6E6}.pill.ex{color:var(--muted)}
+.ctrl{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.stepper{display:flex;align-items:center;border:3px solid var(--ink);border-radius:999px;overflow:hidden;background:#fff}
+.stepper button{border:0;background:#fff;width:50px;height:46px;font:900 26px/1 var(--f-body)}
+.stepper button.plus{background:var(--sun)}
+.stepper button:active{background:var(--line)}
+.stepper output{min-width:46px;text-align:center;font:400 22px/1 var(--f-display)}
+.linkbtn{border:0;background:none;padding:2px 0;font-weight:900;color:var(--cobalt);text-decoration:underline;font-size:14px}
+.savebar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--ink);color:#fff;border-top:3px solid var(--ink);padding:14px max(16px,env(safe-area-inset-right,0px)) calc(14px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.savebar .in{max-width:1120px;margin:0 auto;display:flex;gap:14px;align-items:center}
+.savebar p{margin:0;flex:1;font-weight:800;font-size:15px;min-width:0}
+.toast{position:fixed;left:50%;top:calc(16px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:60;background:var(--ink);color:#fff;border:3px solid var(--sun);border-radius:14px;padding:12px 18px;font-weight:900;max-width:calc(100% - 32px);text-align:center}
+.scrim{position:fixed;inset:0;z-index:40;background:rgba(18,18,58,.55);display:flex;align-items:center;justify-content:center;padding:16px}
+.modal{background:#fff;border:3px solid var(--ink);border-radius:24px;box-shadow:6px 6px 0 var(--ink);width:min(560px,100%);max-height:100%;overflow:auto;padding:22px;display:flex;flex-direction:column;gap:14px}
+.modal h2{margin:0;font:400 26px/1.1 var(--f-display)}
+.photo{display:grid;grid-template-columns:140px 1fr;gap:16px;align-items:center}
+.drop{aspect-ratio:1;border:3px dashed var(--ink);border-radius:20px;display:grid;place-items:center;text-align:center;padding:10px;color:var(--muted);font-weight:800;font-size:13px;background:var(--soft);overflow:hidden}
+.drop img{width:100%;height:100%;object-fit:contain}
+.drop.over{background:#FFF8CC}
+.pick{position:relative;overflow:hidden}
+.pick input{position:absolute;inset:0;opacity:0;cursor:pointer;font-size:100px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.danger{border:0;background:none;color:var(--out);font-weight:900;text-decoration:underline;padding:4px 0;align-self:flex-start}
+.empty{background:#fff;border:3px dashed var(--ink);border-radius:22px;padding:36px 18px;text-align:center;font-weight:900}
+.empty p{color:var(--muted);margin:6px 0 0}
+.busy{opacity:.6;pointer-events:none}
+@media (max-width:640px){
+  .item{grid-template-columns:64px minmax(0,1fr);gap:12px}
+  .ctrl{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center}
+  .two{grid-template-columns:1fr}
+  .photo{grid-template-columns:110px 1fr}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div><h1>Panel del vendedor</h1><small id="where">Aquí subes tus calcomanías y cambias cuántas quedan.</small></div>
+  <a id="viewshop" href="./" target="_blank" rel="noopener">Ver mi tienda ↗</a>
+</div></header>
+<main><div class="wrap" id="app"></div></main>
+<div id="modal"></div>
+
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)};
+var DEF_OWNER='jhon-viera', DEF_REPO='calcomanias', BRANCH='main';
+var cfg={}; try{cfg=JSON.parse(localStorage.getItem('panel')||'{}')||{}}catch(e){cfg={}}
+var data=null, sha=null, dirty=false, saving=false, filter='todas';
+var fmt; try{fmt=new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0})}catch(e){fmt={format:function(n){return '$'+n}}}
+function money(n){return fmt.format(Number(n)||0)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function toast(m,ms){var t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=m;document.body.appendChild(t);setTimeout(function(){t.remove()},ms||3800)}
+function saveCfg(){try{localStorage.setItem('panel',JSON.stringify(cfg))}catch(e){}}
+
+/* ---------- GitHub ---------- */
+function gh(path,opts){
+  opts=opts||{};
+  return fetch('https://api.github.com/repos/'+cfg.owner+'/'+cfg.repo+'/contents/'+path+(opts.method?'':'?ref='+BRANCH+'&t='+Date.now()),{
+    method:opts.method||'GET',
+    headers:{'Authorization':'Bearer '+cfg.token,'Accept':'application/vnd.github+json','Content-Type':'application/json'},
+    body:opts.body?JSON.stringify(opts.body):undefined,cache:'no-store'
+  }).then(function(r){
+    if(r.ok)return r.json();
+    return r.json().catch(function(){return {}}).then(function(j){var e=new Error(j.message||('Error '+r.status));e.status=r.status;throw e});
+  });
+}
+function b64(str){return btoa(unescape(encodeURIComponent(str)))}
+function unb64(s){return decodeURIComponent(escape(atob(String(s).replace(/\n/g,''))))}
+function why(e){
+  if(e.status===401)return 'GitHub no aceptó tu llave (token). Puede estar mal copiada o vencida. Toca "Cambiar conexión" y pega una nueva.';
+  if(e.status===403)return 'Tu llave no tiene permiso para escribir. Al crearla, en "Contents" elige "Read and write".';
+  if(e.status===404)return 'No encontré el repositorio '+cfg.owner+'/'+cfg.repo+' o tu llave no tiene acceso a él.';
+  if(e.status===409)return 'Alguien guardó cambios al mismo tiempo. Recarga la página y vuelve a intentarlo.';
+  return 'No se pudo conectar con GitHub ('+(e.message||'sin internet')+'). Revisa tu conexión.';
+}
+function load(){
+  $('#app').innerHTML='<div class="box"><h2>Cargando tus calcomanías…</h2></div>';
+  return gh('data/stock.json').then(function(f){sha=f.sha; data=JSON.parse(unb64(f.content)); data.tienda=data.tienda||{}; data.items=data.items||[]; dirty=false; render();})
+  .catch(function(e){
+    $('#app').innerHTML='<div class="box stack"><h2>No pude abrir tu tienda</h2><p class="err">'+esc(why(e))+'</p><div class="actions" style="justify-content:flex-start"><button class="btn" data-a="retry">Intentar otra vez</button><button class="btn white" data-a="reconnect">Cambiar conexión</button></div></div>';
+  });
+}
+function saveStock(msg){
+  return gh('data/stock.json',{method:'PUT',body:{message:msg||'Actualizar calcomanías',content:b64(JSON.stringify(data,null,2)+'\n'),sha:sha,branch:BRANCH}})
+    .then(function(r){sha=r.content.sha; dirty=false;});
+}
+function uploadImg(path,dataUrl){
+  return gh(path,{method:'PUT',body:{message:'Subir foto '+path,content:dataUrl.split(',')[1],branch:BRANCH}});
+}
+function deleteImg(path){
+  if(!/^img\//.test(path))return Promise.resolve();
+  return gh(path).then(function(f){return gh(path,{method:'DELETE',body:{message:'Borrar foto '+path,sha:f.sha,branch:BRANCH}})}).catch(function(){});
+}
+
+/* ---------- Conexión (una sola vez) ---------- */
+function setup(err){
+  $('#where').textContent='Primero conecta este panel con tu GitHub. Solo se hace una vez en cada computador o celular.';
+  $('#app').innerHTML='<div class="stack">'+
+  '<div class="box"><h2>Paso 1 · Crea tu llave de GitHub</h2><p>La llave (token) le da permiso a este panel de guardar tus calcomanías en tu página. Nadie más la ve.</p>'+
+  '<ol class="steps">'+
+    '<li>Abre <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener"><b>esta página de GitHub</b></a> (inicia sesión si te lo pide).</li>'+
+    '<li>En <b>Token name</b> escribe: <b>Panel calcomanías</b>.</li>'+
+    '<li>En <b>Expiration</b> elige <b>No expiration</b> (o 1 año).</li>'+
+    '<li>En <b>Repository access</b> elige <b>Only select repositories</b> y escoge <b>calcomanias</b>.</li>'+
+    '<li>En <b>Permissions</b>, toca <b>Add permissions</b>, busca <b>Contents</b> y cámbialo a <b>Read and write</b>.</li>'+
+    '<li>Baja y toca el botón verde <b>Generate token</b>. Copia el código que empieza con <b>github_pat_</b>.</li>'+
+  '</ol></div>'+
+  '<form class="box stack" id="cfgform"><h2>Paso 2 · Pega tu llave aquí</h2>'+
+    '<label class="f">Tu llave de GitHub<input id="c-token" type="password" autocomplete="off" placeholder="github_pat_…" value="'+esc(cfg.token||'')+'"><span class="hint">Se guarda solo en este navegador. No uses este panel en computadores públicos.</span></label>'+
+    '<div class="two"><label class="f">Usuario de GitHub<input id="c-owner" value="'+esc(cfg.owner||DEF_OWNER)+'"></label><label class="f">Repositorio<input id="c-repo" value="'+esc(cfg.repo||DEF_REPO)+'"></label></div>'+
+    (err?'<p class="err">'+esc(err)+'</p>':'')+
+    '<div class="actions" style="justify-content:flex-start"><button class="btn pink" type="submit">Conectar y abrir mi tienda</button></div></form></div>';
+  $('#cfgform').addEventListener('submit',function(e){
+    e.preventDefault();
+    cfg={token:$('#c-token').value.trim(),owner:$('#c-owner').value.trim(),repo:$('#c-repo').value.trim()};
+    if(!cfg.token)return setup('Pega tu llave de GitHub para continuar.');
+    saveCfg(); start();
+  });
+}
+function start(){
+  if(!cfg.token||!cfg.owner||!cfg.repo)return setup();
+  $('#where').innerHTML='Conectado a <b>'+esc(cfg.owner)+'/'+esc(cfg.repo)+'</b>. Los cambios aparecen en tu tienda en 1 o 2 minutos.';
+  $('#viewshop').href='https://'+cfg.owner.toLowerCase()+'.github.io/'+cfg.repo+'/';
+  load();
+}
+
+/* ---------- Lista ---------- */
+function render(){
+  var items=data.items, av=items.filter(function(i){return i.cantidad>0}).length;
+  var list=items.filter(function(i){return filter==='todas'||(filter==='disp'?i.cantidad>0:i.cantidad<=0)});
+  var h='<div class="toolbar"><div class="left"><button class="btn pink" data-a="new">+ Nueva calcomanía</button><button class="btn white" data-a="settings">Datos de la tienda</button></div>'+
+    '<div class="chips">'+[['todas','Todas ('+items.length+')'],['disp','Disponibles ('+av+')'],['agot','Agotadas ('+(items.length-av)+')']].map(function(c){return '<button class="chip" data-f="'+c[0]+'" aria-pressed="'+(filter===c[0])+'">'+c[1]+'</button>'}).join('')+'</div></div>';
+  if(!items.length) h+='<div class="empty">Aún no tienes calcomanías.<p>Toca “+ Nueva calcomanía” para subir la primera.</p></div>';
+  else if(!list.length) h+='<div class="empty">No hay calcomanías en este filtro.</div>';
+  else h+='<div class="list">'+list.map(function(i){
+    var out=i.cantidad<=0;
+    return '<div class="item'+(out?' out':'')+'"><div class="die"><img src="'+imgSrc(i.img)+'" alt=""></div><div style="min-width:0"><h3>'+esc(i.nombre)+'</h3><div class="sub"><span class="num">'+money(i.precio)+'</span>'+(i.categoria?'<span>'+esc(i.categoria)+'</span>':'')+(out?'<span class="pill out">AGOTADA</span>':'<span class="pill ok">Disponible</span>')+(i.ejemplo?'<span class="pill ex">Ejemplo</span>':'')+'</div></div>'+
+      '<div class="ctrl"><div class="stepper"><button data-dec="'+esc(i.id)+'" aria-label="Vendí una">−</button><output class="num">'+i.cantidad+'</output><button class="plus" data-inc="'+esc(i.id)+'" aria-label="Hice una más">+</button></div><button class="linkbtn" data-edit="'+esc(i.id)+'">Editar o borrar</button></div></div>';
+  }).join('')+'</div>';
+  h+='<p class="hint" style="margin-top:22px">Toca <b>+</b> cuando hagas una calcomanía y <b>−</b> cuando vendas una. Al llegar a 0 aparece “Agotada” en tu tienda. · <button class="linkbtn" data-a="reconnect">Cambiar conexión</button></p>';
+  $('#app').innerHTML=h;
+  var bar=$('#savebar'); if(bar)bar.remove();
+  if(dirty){
+    var b=document.createElement('div');b.className='savebar';b.id='savebar';
+    b.innerHTML='<div class="in"><p>Tienes cambios sin guardar. Tus clientes los verán cuando toques Guardar.</p><button class="btn" data-a="save"'+(saving?' disabled':'')+'>'+(saving?'Guardando…':'Guardar')+'</button></div>';
+    document.body.appendChild(b);
+  }
+}
+var localImgs={};
+function imgSrc(p){return localImgs[p]||('https://raw.githubusercontent.com/'+cfg.owner+'/'+cfg.repo+'/'+BRANCH+'/'+p)}
+function find(id){return data.items.find(function(i){return i.id===id})}
+function touch(){dirty=true;render()}
+
+/* ---------- Fotos ---------- */
+function shrink(file){
+  return new Promise(function(res,rej){
+    var url=URL.createObjectURL(file), img=new Image();
+    img.onload=function(){
+      var max=800, s=Math.min(1,max/Math.max(img.width,img.height)), c=document.createElement('canvas');
+      c.width=Math.round(img.width*s); c.height=Math.round(img.height*s);
+      c.getContext('2d').drawImage(img,0,0,c.width,c.height); URL.revokeObjectURL(url);
+      var out=c.toDataURL('image/webp',0.85), ext='webp';
+      if(out.indexOf('data:image/webp')!==0){out=c.toDataURL('image/png');ext='png';}
+      res({url:out,ext:ext});
+    };
+    img.onerror=function(){URL.revokeObjectURL(url);rej()};
+    img.src=url;
+  });
+}
+
+/* ---------- Crear / editar ---------- */
+function openItem(id){
+  var it=id?find(id):null, pic=null, confirm=false;
+  var cats=[]; data.items.forEach(function(i){if(i.categoria&&cats.indexOf(i.categoria)<0)cats.push(i.categoria)});
+  $('#modal').innerHTML='<div class="scrim"><form class="modal" id="itemform" novalidate><h2>'+(it?'Editar calcomanía':'Nueva calcomanía')+'</h2>'+
+    '<div class="photo"><div class="drop" id="drop">'+(it?'<img src="'+imgSrc(it.img)+'" alt="">':'Arrastra la foto aquí')+'</div><div class="stack" style="gap:8px"><span class="btn pick">'+(it?'Cambiar foto':'Elegir foto')+'<input type="file" id="i-file" accept="image/*" aria-label="Elegir foto"></span><span class="hint">JPG o PNG. Si tiene fondo transparente, se conserva.</span></div></div>'+
+    '<label class="f">Nombre<input id="i-name" maxlength="60" placeholder="Ej: Corazón brillante" value="'+esc(it?it.nombre:'')+'"></label>'+
+    '<div class="two"><label class="f">Precio (pesos)<input id="i-price" inputmode="numeric" placeholder="3000" value="'+(it?it.precio:'')+'"></label><label class="f">¿Cuántas tienes?<input id="i-qty" inputmode="numeric" value="'+(it?it.cantidad:1)+'"></label></div>'+
+    '<label class="f">Categoría (opcional)<input id="i-cat" list="catlist" maxlength="30" placeholder="Ej: Fútbol, Anime, Frases" value="'+esc(it&&it.categoria||'')+'"><datalist id="catlist">'+cats.map(function(c){return '<option value="'+esc(c)+'">'}).join('')+'</datalist></label>'+
+    '<p class="err" id="i-err" hidden></p>'+
+    '<div class="actions"><button type="button" class="btn white" data-a="close">Cancelar</button><button type="submit" class="btn pink" id="i-ok">'+(it?'Guardar cambios':'Subir a mi tienda')+'</button></div>'+
+    (it?'<button type="button" class="danger" id="i-del">Borrar esta calcomanía</button>':'')+'</form></div>';
+  function err(m){var e=$('#i-err');e.textContent=m;e.hidden=false}
+  function takeFile(f){ if(!f||!/^image\//.test(f.type))return err('Ese archivo no es una imagen.');
+    $('#drop').innerHTML='Cargando…'; shrink(f).then(function(p){pic=p;$('#drop').innerHTML='<img src="'+p.url+'" alt="">';$('#i-err').hidden=true}).catch(function(){$('#drop').innerHTML='Arrastra la foto aquí';err('No pude leer esa foto. Prueba con otra en JPG o PNG.')}); }
+  $('#i-file').addEventListener('change',function(e){takeFile(e.target.files[0])});
+  var d=$('#drop');
+  d.addEventListener('dragover',function(e){e.preventDefault();d.classList.add('over')});
+  d.addEventListener('dragleave',function(){d.classList.remove('over')});
+  d.addEventListener('drop',function(e){e.preventDefault();d.classList.remove('over');takeFile(e.dataTransfer.files[0])});
+  $('#itemform').addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=$('#i-name').value.trim(), price=parseInt($('#i-price').value.replace(/\D/g,''),10)||0, qty=Math.max(0,parseInt($('#i-qty').value.replace(/\D/g,''),10)||0), cat=$('#i-cat').value.trim();
+    if(!it&&!pic)return err('Falta la foto de la calcomanía.');
+    if(!name)return err('Escribe el nombre de la calcomanía.');
+    var form=$('#itemform'); form.classList.add('busy'); $('#i-ok').textContent='Subiendo…';
+    var nid=it?it.id:('c'+Date.now().toString(36)), oldImg=it&&it.img;
+    var step=pic?uploadImg('img/'+nid+'-'+Date.now().toString(36)+'.'+pic.ext,pic.url).then(function(r){localImgs[r.content.path]=pic.url;return r.content.path}):Promise.resolve(oldImg);
+    step.then(function(path){
+      if(it){it.nombre=name;it.precio=price;it.cantidad=qty;it.categoria=cat;it.img=path;delete it.ejemplo;}
+      else data.items.unshift({id:nid,nombre:name,categoria:cat,precio:price,cantidad:qty,img:path});
+      return saveStock((it?'Editar ':'Nueva calcomanía: ')+name).then(function(){ if(pic&&oldImg&&oldImg!==path)deleteImg(oldImg); });
+    }).then(function(){$('#modal').innerHTML='';render();toast(it?'Cambios guardados. Se verán en tu tienda en 1 o 2 minutos.':'¡Subida! Aparecerá en tu tienda en 1 o 2 minutos.',5000)})
+    .catch(function(e2){form.classList.remove('busy');$('#i-ok').textContent='Intentar otra vez';err(why(e2))});
+  });
+  var del=$('#i-del');
+  if(del)del.addEventListener('click',function(){
+    if(!confirm){confirm=true;del.textContent='¿Seguro? Toca otra vez para borrarla de tu tienda';return}
+    var form=$('#itemform');form.classList.add('busy');
+    var img=it.img; data.items=data.items.filter(function(x){return x.id!==it.id});
+    saveStock('Borrar '+it.nombre).then(function(){deleteImg(img);$('#modal').innerHTML='';render();toast('Calcomanía borrada.')})
+    .catch(function(e2){data.items.push(it);form.classList.remove('busy');err(why(e2))});
+  });
+}
+function openSettings(){
+  var t=data.tienda;
+  $('#modal').innerHTML='<div class="scrim"><form class="modal" id="setform" novalidate><h2>Datos de la tienda</h2>'+
+    '<label class="f">Nombre de la tienda<input id="s-name" maxlength="40" value="'+esc(t.nombre||'')+'"></label>'+
+    '<label class="f">Frase de la portada<input id="s-tag" maxlength="140" value="'+esc(t.eslogan||'')+'"></label>'+
+    '<label class="f">WhatsApp para pedidos<input id="s-wa" inputmode="tel" placeholder="573001234567" value="'+esc(t.whatsapp||'')+'"><span class="hint">Con 57 adelante (Colombia), sin espacios ni +. Así tus clientes te envían el pedido con un toque.</span></label>'+
+    '<label class="f">Instagram (opcional)<input id="s-ig" placeholder="@mitienda" value="'+esc(t.instagram||'')+'"></label>'+
+    '<p class="err" id="s-err" hidden></p><div class="actions"><button type="button" class="btn white" data-a="close">Cancelar</button><button class="btn pink" type="submit">Guardar</button></div></form></div>';
+  $('#setform').addEventListener('submit',function(e){
+    e.preventDefault(); var f=$('#setform'); f.classList.add('busy');
+    var old=JSON.stringify(t);
+    t.nombre=$('#s-name').value.trim()||'Mis Calcomanías'; t.eslogan=$('#s-tag').value.trim(); t.whatsapp=$('#s-wa').value.replace(/\D/g,''); t.instagram=$('#s-ig').value.trim().replace(/^@/,'');
+    saveStock('Actualizar datos de la tienda').then(function(){$('#modal').innerHTML='';render();toast('Datos guardados.')})
+    .catch(function(e2){data.tienda=JSON.parse(old);f.classList.remove('busy');var er=$('#s-err');er.textContent=why(e2);er.hidden=false});
+  });
+}
+
+document.addEventListener('click',function(e){
+  var b=e.target.closest('button'); if(!b)return;
+  var a=b.dataset.a;
+  if(b.dataset.inc||b.dataset.dec){var it=find(b.dataset.inc||b.dataset.dec); it.cantidad=Math.max(0,it.cantidad+(b.dataset.inc?1:-1)); touch(); if(it.cantidad===0&&b.dataset.dec)toast('“'+it.nombre+'” quedó agotada.'); return}
+  if(b.dataset.edit){openItem(b.dataset.edit);return}
+  if(b.dataset.f){filter=b.dataset.f;render();return}
+  if(a==='new')openItem(null);
+  else if(a==='settings')openSettings();
+  else if(a==='close')$('#modal').innerHTML='';
+  else if(a==='retry')load();
+  else if(a==='reconnect'){var bar=$('#savebar');if(bar)bar.remove();setup();}
+  else if(a==='save'){
+    if(saving)return; saving=true; render();
+    saveStock('Actualizar cantidades').then(function(){saving=false;render();toast('Guardado. Tu tienda se actualiza en 1 o 2 minutos.',5000)})
+    .catch(function(e2){saving=false;dirty=true;render();toast(why(e2),7000)});
+  }
+});
+window.addEventListener('beforeunload',function(e){if(dirty){e.preventDefault();e.returnValue=''}});
+start();
+})();
+</script>
+</body>
+</html>
