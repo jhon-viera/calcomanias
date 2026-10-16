@@ -133,15 +133,6 @@
       "precio": 4000,
       "cantidad": 4,
       "img": "img/cmvb3nir4-mvb3nir4.webp"
-    },
-    {
-      "id": "ej2",
-      "ejemplo": true,
-      "nombre": "Cactus feliz",
-      "categoria": "Plantas",
-      "precio": 2500,
-      "cantidad": 0,
-      "img": "img/ej2.svg"
     }
   ]
 }
