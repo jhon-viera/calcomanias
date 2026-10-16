@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvbi6jx5",
+      "nombre": "MONSTER",
+      "categoria": "POPULAR",
+      "precio": 3500,
+      "cantidad": 8,
+      "img": "img/cmvbi6jx5-mvbi6jx5.webp"
+    },
+    {
       "id": "cmvbi5f8y",
       "nombre": "MONSTER ENERGY",
       "categoria": "POPULAR",
