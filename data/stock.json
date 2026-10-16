@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvb3pm9q",
+      "nombre": "FOX",
+      "categoria": "POPULAR",
+      "precio": 2500,
+      "cantidad": 1,
+      "img": "img/cmvb3pm9q-mvb3pm9q.webp"
+    },
+    {
       "id": "cmvb3nir4",
       "nombre": "nooo la polizia nooo",
       "categoria": "Íconos",
