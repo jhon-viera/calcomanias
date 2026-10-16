@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvb4dw85",
+      "nombre": "LOKA",
+      "categoria": "",
+      "precio": 5000,
+      "cantidad": 1,
+      "img": "img/cmvb4dw85-mvb4dw85.webp"
+    },
+    {
       "id": "cmvb4c3tb",
       "nombre": "QUE  MIRA SAPO",
       "categoria": "",
