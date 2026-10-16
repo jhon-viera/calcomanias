@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvb3nir4",
+      "nombre": "nooo la polizia nooo",
+      "categoria": "Íconos",
+      "precio": 4000,
+      "cantidad": 4,
+      "img": "img/cmvb3nir4-mvb3nir4.webp"
+    },
+    {
       "id": "ej1",
       "ejemplo": true,
       "nombre": "Gato naranja",
