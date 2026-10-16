@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvbj7sti",
+      "nombre": "FAMILIA",
+      "categoria": "",
+      "precio": 18000,
+      "cantidad": 1,
+      "img": "img/cmvbj7sti-mvbj7sti.webp"
+    },
+    {
       "id": "cmvbj3uhs",
       "nombre": "CALABERA",
       "categoria": "",
