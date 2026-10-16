@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvb4ar1g",
+      "nombre": "WASTED",
+      "categoria": "",
+      "precio": 2500,
+      "cantidad": 1,
+      "img": "img/cmvb4ar1g-mvb4ar1g.webp"
+    },
+    {
       "id": "cmvb4acvz",
       "nombre": "OSS X",
       "categoria": "",
