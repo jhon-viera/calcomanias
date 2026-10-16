@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvbj2yr0",
+      "nombre": "ESTAMOS BIEN",
+      "categoria": "",
+      "precio": 3000,
+      "cantidad": 2,
+      "img": "img/cmvbj2yr0-mvbj2yr0.webp"
+    },
+    {
       "id": "cmvbj1prb",
       "nombre": "BESO",
       "categoria": "",
