@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvb473ly",
+      "nombre": "FOXX",
+      "categoria": "",
+      "precio": 20,
+      "cantidad": 2,
+      "img": "img/cmvb473ly-mvb473ly.webp"
+    },
+    {
       "id": "cmvb46e3r",
       "nombre": "46",
       "categoria": "POPULAR",
