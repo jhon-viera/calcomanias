@@ -151,15 +151,6 @@
       "precio": 2000,
       "cantidad": 12,
       "img": "img/ej3.svg"
-    },
-    {
-      "id": "ej4",
-      "ejemplo": true,
-      "nombre": "Corazón",
-      "categoria": "Íconos",
-      "precio": 2000,
-      "cantidad": 7,
-      "img": "img/ej4.svg"
     }
   ]
 }
