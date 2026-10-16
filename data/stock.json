@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvbj1prb",
+      "nombre": "BESO",
+      "categoria": "",
+      "precio": 1000,
+      "cantidad": 4,
+      "img": "img/cmvbj1prb-mvbj1prb.webp"
+    },
+    {
       "id": "cmvbi6jx5",
       "nombre": "MONSTER",
       "categoria": "POPULAR",
