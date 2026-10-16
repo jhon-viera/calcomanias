@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvb48tbd",
+      "nombre": "BOOS BUNNY",
+      "categoria": "",
+      "precio": 4500,
+      "cantidad": 2,
+      "img": "img/cmvb48tbd-mvb48tbd.webp"
+    },
+    {
       "id": "cmvb48ayo",
       "nombre": "NO5",
       "categoria": "",
