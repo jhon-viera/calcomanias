@@ -142,15 +142,6 @@
       "precio": 2500,
       "cantidad": 0,
       "img": "img/ej2.svg"
-    },
-    {
-      "id": "ej3",
-      "ejemplo": true,
-      "nombre": "Rayo",
-      "categoria": "Íconos",
-      "precio": 2000,
-      "cantidad": 12,
-      "img": "img/ej3.svg"
     }
   ]
 }
