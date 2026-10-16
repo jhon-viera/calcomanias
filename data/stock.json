@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvbj3uhs",
+      "nombre": "CALABERA",
+      "categoria": "",
+      "precio": 5000,
+      "cantidad": 1,
+      "img": "img/cmvbj3uhs-mvbj3uhs.webp"
+    },
+    {
       "id": "cmvbj2yr0",
       "nombre": "ESTAMOS BIEN",
       "categoria": "",
