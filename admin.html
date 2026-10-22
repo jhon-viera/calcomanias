@@ -181,6 +181,10 @@ function render(){
     return '<div class="item'+(out?' out':'')+'"><div class="die"><img src="'+imgSrc(i.img)+'" alt=""></div><div style="min-width:0"><h3>'+esc(i.nombre)+'</h3><div class="sub"><span class="num">'+money(i.precio)+'</span>'+(i.categoria?'<span>'+esc(i.categoria)+'</span>':'')+(out?'<span class="pill out">AGOTADA</span>':'<span class="pill ok">Disponible</span>')+(i.ejemplo?'<span class="pill ex">Ejemplo</span>':'')+'</div></div>'+
       '<div class="ctrl"><div class="stepper"><button data-dec="'+esc(i.id)+'" aria-label="Vendí una">−</button><output class="num">'+i.cantidad+'</output><button class="plus" data-inc="'+esc(i.id)+'" aria-label="Hice una más">+</button></div><button class="linkbtn" data-edit="'+esc(i.id)+'">Editar o borrar</button></div></div>';
   }).join('')+'</div>';
+  var gal=data.galeria||[];
+  h+='<div class="toolbar" style="margin-top:44px"><div><h2 style="margin:0;font:400 34px/1 var(--f-display);letter-spacing:.04em">Galería de personalizadas</h2><p class="hint" style="margin:6px 0 0">Fotos de trabajos a pedido. Salen en tu tienda sin precio, solo para mostrar lo que haces.</p></div><button class="btn" data-a="gnew">+ Foto a la galería</button></div>';
+  if(!gal.length) h+='<div class="empty">Aún no hay fotos en la galería.<p>Toca “+ Foto a la galería” para subir la primera.</p></div>';
+  else h+='<div class="list">'+gal.map(function(g){return '<div class="item"><div class="die"><img src="'+imgSrc(g.img)+'" alt=""></div><div style="min-width:0"><h3>'+esc(g.titulo)+'</h3><div class="sub">'+(g.nota?'<span>'+esc(g.nota)+'</span>':'')+'<span class="pill ex">Sin precio</span></div></div><div class="ctrl"><button class="linkbtn" data-gedit="'+esc(g.id)+'">Editar o borrar</button></div></div>'}).join('')+'</div>';
   h+='<p class="hint" style="margin-top:22px">Toca <b>+</b> cuando hagas una calcomanía y <b>−</b> cuando vendas una. Al llegar a 0 aparece “Agotada” en tu tienda. · <button class="linkbtn" data-a="reconnect">Cambiar conexión</button></p>';
   $('#app').innerHTML=h;
   var bar=$('#savebar'); if(bar)bar.remove();
@@ -256,6 +260,47 @@ function openItem(id){
     .catch(function(e2){data.items.push(it);form.classList.remove('busy');err(why(e2))});
   });
 }
+function openGallery(id){
+  data.galeria=data.galeria||[];
+  var it=id?data.galeria.find(function(g){return g.id===id}):null, pic=null, confirm=false;
+  $('#modal').innerHTML='<div class="scrim"><form class="modal" id="galform" novalidate><h2>'+(it?'Editar foto de galería':'Nueva foto de galería')+'</h2>'+
+    '<div class="photo"><div class="drop" id="gdrop">'+(it?'<img src="'+imgSrc(it.img)+'" alt="">':'Arrastra la foto aquí')+'</div><div class="stack" style="gap:8px"><span class="btn pick">'+(it?'Cambiar foto':'Elegir foto')+'<input type="file" id="g-file" accept="image/*" aria-label="Elegir foto"></span><span class="hint">Una foto del trabajo terminado.</span></div></div>'+
+    '<label class="f">Título<input id="g-title" maxlength="50" placeholder="Ej: Nombre JERÓNIMO" value="'+esc(it?it.titulo:'')+'"></label>'+
+    '<label class="f">Detalle (opcional)<input id="g-note" maxlength="80" placeholder="Ej: Vinil holográfico, 15 cm" value="'+esc(it&&it.nota||'')+'"></label>'+
+    '<p class="err" id="g-err" hidden></p><div class="actions"><button type="button" class="btn white" data-a="close">Cancelar</button><button type="submit" class="btn pink" id="g-ok">'+(it?'Guardar cambios':'Subir a la galería')+'</button></div>'+
+    (it?'<button type="button" class="danger" id="g-del">Borrar de la galería</button>':'')+'</form></div>';
+  function err(m){var e=$('#g-err');e.textContent=m;e.hidden=false}
+  function take(f){ if(!f||!/^image\//.test(f.type))return err('Ese archivo no es una imagen.');
+    $('#gdrop').innerHTML='Cargando…'; shrink(f).then(function(p){pic=p;$('#gdrop').innerHTML='<img src="'+p.url+'" alt="">';$('#g-err').hidden=true}).catch(function(){$('#gdrop').innerHTML='Arrastra la foto aquí';err('No pude leer esa foto. Prueba con otra en JPG o PNG.')}); }
+  $('#g-file').addEventListener('change',function(e){take(e.target.files[0])});
+  var d=$('#gdrop');
+  d.addEventListener('dragover',function(e){e.preventDefault();d.classList.add('over')});
+  d.addEventListener('dragleave',function(){d.classList.remove('over')});
+  d.addEventListener('drop',function(e){e.preventDefault();d.classList.remove('over');take(e.dataTransfer.files[0])});
+  $('#galform').addEventListener('submit',function(e){
+    e.preventDefault();
+    var title=$('#g-title').value.trim(), note=$('#g-note').value.trim();
+    if(!it&&!pic)return err('Falta la foto.');
+    if(!title)return err('Escribe un título.');
+    var form=$('#galform'); form.classList.add('busy'); $('#g-ok').textContent='Subiendo…';
+    var nid=it?it.id:('g'+Date.now().toString(36)), old=it&&it.img;
+    var step=pic?uploadImg('img/'+nid+'-'+Date.now().toString(36)+'.'+pic.ext,pic.url).then(function(r){localImgs[r.content.path]=pic.url;return r.content.path}):Promise.resolve(old);
+    step.then(function(path){
+      if(it){it.titulo=title;it.nota=note;it.img=path;}
+      else data.galeria.unshift({id:nid,titulo:title,nota:note,img:path});
+      return saveStock((it?'Editar galería: ':'Galería: ')+title).then(function(){ if(pic&&old&&old!==path)deleteImg(old); });
+    }).then(function(){$('#modal').innerHTML='';render();toast('Listo. Se verá en tu galería en 1 o 2 minutos.',5000)})
+    .catch(function(e2){form.classList.remove('busy');$('#g-ok').textContent='Intentar otra vez';err(why(e2))});
+  });
+  var del=$('#g-del');
+  if(del)del.addEventListener('click',function(){
+    if(!confirm){confirm=true;del.textContent='¿Seguro? Toca otra vez para borrarla';return}
+    var form=$('#galform');form.classList.add('busy');
+    var img=it.img; data.galeria=data.galeria.filter(function(x){return x.id!==it.id});
+    saveStock('Borrar de galería: '+it.titulo).then(function(){deleteImg(img);$('#modal').innerHTML='';render();toast('Foto borrada de la galería.')})
+    .catch(function(e2){data.galeria.push(it);form.classList.remove('busy');err(why(e2))});
+  });
+}
 function openSettings(){
   var t=data.tienda;
   $('#modal').innerHTML='<div class="scrim"><form class="modal" id="setform" novalidate><h2>Datos de la tienda</h2>'+
@@ -278,9 +323,11 @@ document.addEventListener('click',function(e){
   var a=b.dataset.a;
   if(b.dataset.inc||b.dataset.dec){var it=find(b.dataset.inc||b.dataset.dec); it.cantidad=Math.max(0,it.cantidad+(b.dataset.inc?1:-1)); touch(); if(it.cantidad===0&&b.dataset.dec)toast('“'+it.nombre+'” quedó agotada.'); return}
   if(b.dataset.edit){openItem(b.dataset.edit);return}
+  if(b.dataset.gedit){openGallery(b.dataset.gedit);return}
   if(b.dataset.f){filter=b.dataset.f;render();return}
   if(a==='new')openItem(null);
   else if(a==='settings')openSettings();
+  else if(a==='gnew')openGallery(null);
   else if(a==='close')$('#modal').innerHTML='';
   else if(a==='retry')load();
   else if(a==='reconnect'){var bar=$('#savebar');if(bar)bar.remove();setup();}

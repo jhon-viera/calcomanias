@@ -127,7 +127,29 @@ footer a{color:var(--yellow)}
 .total .row b{font-weight:400;font-size:36px}
 .note{font-size:14px;color:var(--muted);margin:0;font-weight:600}
 
+
+/* ---------- Galería de personalizadas ---------- */
+.gallery{background:var(--pink);border-block:5px solid var(--ink);padding-block:56px 70px;position:relative;overflow:hidden}
+.gallery::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(20,20,20,.16) 2px,transparent 2.4px);background-size:16px 16px;pointer-events:none}
+.gallery .wrap{position:relative}
+.gal-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:34px}
+.gal-head .caption{background:#fff}
+.gal-head p{margin:16px 0 0;max-width:34em;font-weight:600;color:#fff;font-size:18px;text-shadow:1px 1px 0 var(--ink)}
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:34px 26px}
+.gcard{margin:0;display:flex;flex-direction:column;gap:12px;min-width:0}
+.gcard .die{aspect-ratio:4/3;padding:0;overflow:hidden}
+.gcard .die img{object-fit:cover}
+.gcard:nth-child(3n+1) .die{transform:rotate(-1.5deg)}.gcard:nth-child(3n+2) .die{transform:rotate(1.2deg)}.gcard:nth-child(3n) .die{transform:rotate(-.5deg)}
+.gcard figcaption{background:#fff;border:3.5px solid var(--ink);border-radius:8px;padding:8px 12px 6px;box-shadow:4px 4px 0 var(--ink);align-self:flex-start;max-width:100%}
+.gcard figcaption b{display:block;font:400 22px/1 var(--f-display);letter-spacing:.04em;overflow-wrap:anywhere}
+.gcard figcaption span{font-size:14px;color:var(--muted);font-weight:600}
+.gtag{position:absolute;right:-8px;top:12px;background:var(--yellow);border:3px solid var(--ink);padding:4px 10px 2px;font:400 16px/1 var(--f-display);letter-spacing:.06em;transform:rotate(6deg);z-index:2}
+.gal-cta{margin-top:40px;display:flex;justify-content:center}
+
 @media (max-width:780px){
+  .ggrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 16px}
+  .gcard figcaption b{font-size:18px}
+  .gal-head p{font-size:16px}
   .panel{grid-template-columns:1fr;min-height:0;padding:18px 18px 26px;box-shadow:7px 7px 0 var(--ink)}
   .stage{max-width:260px;order:-1;margin:4px auto -4px}
   .topline{order:-2}
@@ -157,6 +179,7 @@ footer a{color:var(--yellow)}
         <p class="say" id="tagline">Calcomanías que pegan duro. Para el portátil, el termo, el casco y donde se te ocurra.</p>
         <div class="ctas">
           <a class="btn" href="#catalogo">¡Ver calcomanías!</a>
+          <a class="btn white" id="heroGal" href="#personalizadas" hidden>Personalizadas</a>
           <a class="btn pink" id="heroWa" href="#" target="_blank" rel="noopener" hidden>Pedir por WhatsApp</a>
         </div>
         <div class="stats" id="stats"></div>
@@ -195,6 +218,17 @@ footer a{color:var(--yellow)}
   </div>
 </main>
 
+<section class="gallery" id="personalizadas" hidden>
+  <div class="wrap">
+    <div class="gal-head">
+      <div><div class="caption"><h2>¡Hechas a pedido!</h2></div>
+      <p>Tu nombre, tu frase o tu diseño, en el color o en vinil holográfico. Estos son trabajos que ya hice. Escríbeme y hacemos la tuya.</p></div>
+    </div>
+    <div class="ggrid" id="ggrid"></div>
+    <div class="gal-cta"><a class="btn" id="galWa" href="#" target="_blank" rel="noopener">¡Quiero una personalizada!</a></div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <div><strong id="fname">Mis Calcomanías</strong><div id="fcontact" style="margin-top:10px"></div></div>
@@ -221,7 +255,7 @@ footer a{color:var(--yellow)}
   fetch('data/stock.json?v='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
     data=d; data.tienda=data.tienda||{}; data.items=data.items||[];
     Object.keys(bag).forEach(function(id){var it=find(id); if(!it||it.cantidad<=0)delete bag[id]; else if(bag[id]>it.cantidad)bag[id]=it.cantidad;});
-    saveBag(); paintStatic(); render(); paintBag();
+    saveBag(); paintStatic(); render(); paintGallery(); paintBag();
   }).catch(function(){
     $('#grid').innerHTML='<div class="empty">¡Ups! No cargó el catálogo<p>Revisa tu conexión y recarga la página.</p></div>';
     $('#summary').textContent='';
@@ -240,6 +274,14 @@ footer a{color:var(--yellow)}
     var words=['¡Pow!','Pedidos por WhatsApp','¡Zas!','Para el casco, la moto y el portátil','¡Boom!','Mira cuáles quedan','¡Crash!','Arma tu pedido'];
     var s=words.map(function(w){return '<span>'+w+'</span>'}).join('');
     $('#track').innerHTML=s+s+s+s;
+  }
+
+  function paintGallery(){
+    var g=data.galeria||[]; if(!g.length)return;
+    $('#personalizadas').hidden=false; $('#heroGal').hidden=false;
+    $('#ggrid').innerHTML=g.map(function(x){return '<figure class="gcard"><div class="die"><span class="gtag">Personalizada</span><img loading="lazy" src="'+esc(x.img)+'" alt="Calcomanía personalizada '+esc(x.titulo)+'"></div><figcaption><b>'+esc(x.titulo)+'</b>'+(x.nota?'<span>'+esc(x.nota)+'</span>':'')+'</figcaption></figure>'}).join('');
+    var n=wa(), a=$('#galWa');
+    if(n)a.href='https://wa.me/'+n+'?text='+encodeURIComponent('¡Hola! Vi tu galería y quiero una calcomanía personalizada.'); else a.hidden=true;
   }
 
   function render(){
