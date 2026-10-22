@@ -7,6 +7,14 @@
   },
   "items": [
     {
+      "id": "cmvixf17w",
+      "nombre": "NO FEAR HOLOGRÁFICA",
+      "categoria": "Holográficas",
+      "precio": 4000,
+      "cantidad": 1,
+      "img": "img/cmvixf17w-mvixf17w.webp"
+    },
+    {
       "id": "cmviww52h",
       "nombre": "46 HOLOGRÁFICA",
       "categoria": "Holográficas",
