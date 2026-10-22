@@ -7,6 +7,22 @@
   },
   "items": [
     {
+      "id": "cmviww52h",
+      "nombre": "46 HOLOGRÁFICA",
+      "categoria": "Holográficas",
+      "precio": 4000,
+      "cantidad": 3,
+      "img": "img/cmviww52h-mviww52h.webp"
+    },
+    {
+      "id": "cmviww4t7",
+      "nombre": "TODAS MIENTEN",
+      "categoria": "Holográficas",
+      "precio": 4000,
+      "cantidad": 2,
+      "img": "img/cmviww4t7-mviww4t7.webp"
+    },
+    {
       "id": "cmvbj7sti",
       "nombre": "FAMILIA",
       "categoria": "",
